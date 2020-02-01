@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Scoring : MonoBehaviour
 {
-    float netScore;
     List<float> roundScores;
     CustomerManager cm;
     // Start is called before the first frame update
     void Start()
     {
         cm = GetComponent<CustomerManager>();
-        netScore = 0;
         roundScores = new List<float>();
     }
 
@@ -31,5 +29,13 @@ public class Scoring : MonoBehaviour
         }
         // time deductions
         roundScores.Add(score);
+    }
+
+    public float getFinalScore() {
+        float sum = 0;
+        foreach(float score in roundScores) {
+            sum += score;
+        }
+        return sum / roundScores.Count;
     }
 }

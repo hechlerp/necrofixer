@@ -5,12 +5,14 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     CustomerManager cm;
+    Scoring sc;
     int gameTimer;
     // Start is called before the first frame update
     void Start()
     {
         gameTimer = 0;
         cm = GetComponent<CustomerManager>();
+        sc = GetComponent<Scoring>();
     }
 
     // Update is called once per frame
@@ -25,5 +27,6 @@ public class GameController : MonoBehaviour
 
     public void endGame() {
         Debug.Log("IT'S OVAH");
+        Debug.Log("Final score: " + sc.getFinalScore());
     }
 }
