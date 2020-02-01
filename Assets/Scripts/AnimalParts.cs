@@ -5,8 +5,9 @@ using UnityEngine;
 public class AnimalParts : MonoBehaviour
 {
     List<string> bodyPartNames;
-    Dictionary<string, Sprite> textureDict;
+    Dictionary<string, Sprite> spriteDict;
     Dictionary<string, List<string>> partNames;
+    Dictionary<string, string> animalAlignments;
     Object[] loadedTextures;
     public Vector2 spriteSize;
     public List<string> animalWeighting;
@@ -19,7 +20,7 @@ public class AnimalParts : MonoBehaviour
         bodyPartNames.Add("Body");
         bodyPartNames.Add("Head");
         bodyPartNames.Add("Tail");
-        textureDict = new Dictionary<string, Sprite>();
+        spriteDict = new Dictionary<string, Sprite>();
         partNames = new Dictionary<string, List<string>>();
         Vector2 originPosition = new Vector2(0, 0);
         Vector2 centerAnchor = new Vector2(0.5f, 0.5f);
@@ -29,33 +30,49 @@ public class AnimalParts : MonoBehaviour
             loadedTextures = Resources.LoadAll("BodyParts/" + bodyPartName);
             List<string> partNamesList = new List<string>();
             foreach (Object texture in loadedTextures) {
-                if (!textureDict.TryGetValue(texture.name, out entry)) {
+                if (!spriteDict.TryGetValue(texture.name, out entry)) {
                     Sprite sprite = Sprite.Create(texture as Texture2D, new Rect(originPosition, spriteSize), centerAnchor);
                     sprite.name = texture.name;
-                    textureDict.Add(texture.name, sprite);
+                    spriteDict.Add(texture.name, sprite);
                     partNamesList.Add(texture.name);
                 }
             }
             partNames.Add(bodyPartName, partNamesList);
         }
+        animalAlignments = new Dictionary<string, string>() {
+            {"Cat", "CU" },
+            {"Dog", "CU" },
+            {"Unicorn", "CU" },
+            {"Dragon", "D"},
+            {"Mantis", "D" },
+            {"Griffin", "D" },
+            {"Swordfish", "D" },
+            {"Crow", "CR" },
+            {"Human", "CR" },
+            {"Octopus", "CR" }
+        };
+    }
+
+    public Dictionary<string, string> getAnimalAlignments() {
+        return animalAlignments;
     }
 
     public Sprite getSprite(string partName) {
         Sprite entry;
-        if (textureDict.TryGetValue(partName, out entry)) {
+        if (spriteDict.TryGetValue(partName, out entry)) {
             return entry;
         } else {
             return null;
         }
     }
 
-    public Sprite getRandomSprite(string currentName, string partName) {
-        string randomName = getWeightedRandomName(currentName, partName);
-        return textureDict[randomName];
+    public Sprite getRandomSprite(string baseAnimal, string currentName, string partName) {
+        string randomName = getWeightedRandomName(baseAnimal, currentName, partName);
+        return spriteDict[randomName];
     }
 
-    public string getWeightedRandomName(string currentName, string partName) {
-        string currentAnimal = currentName.Split('-')[0];
+    public string getWeightedRandomName(string baseAnimal, string currentName, string partName) {
+        string currentAnimal = currentName.Split('-')[2];
         int randomizedPercentage = Random.Range((int)0, (int)100);
         string chosenAnimal = "";
         int currentTotal = 0;
@@ -69,6 +86,7 @@ public class AnimalParts : MonoBehaviour
                 chosenAnimal = animalName;
             }
         }
-        return partNames[partName].Find(animalPartName => animalPartName == chosenAnimal + "-" + partName);
+        string compositeName = baseAnimal + "-" + partName + "-" + chosenAnimal;
+        return partNames[partName].Find(animalPartName => animalPartName == compositeName);
     }
 }
