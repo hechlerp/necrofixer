@@ -21,7 +21,7 @@ public class Scoring : MonoBehaviour
         string customerAlignment = cc.alignment;
         float score = 0;
         foreach (GameObject petPart in petParts) {
-            string animal = petPart.name.Split('-')[2];
+            string animal = petPart.name.Split('_')[2];
             string animalAlignment = alignments[animal];
             if (animalAlignment == customerAlignment) {
                 score++;

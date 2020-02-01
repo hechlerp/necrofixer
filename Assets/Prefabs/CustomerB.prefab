@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   petParts:
-  - Head-Dog
-  - Head-Cat
-  - Head-Unicorn
-  - Head-Mantis
-  - Head-Octopus
+  - head_dog
+  - head_cat
+  - head_unicorn
+  - head_mantis
+  - head_octopus
   basePart: {fileID: 681782895569693055, guid: 9c257ed1c59e5974d8efbe022c37da48, type: 3}
-  animalBase: Cat
+  animalBase: cat
   partPositions:
   - {x: 0, y: 0, z: -1}
   - {x: 2, y: 0, z: -1}

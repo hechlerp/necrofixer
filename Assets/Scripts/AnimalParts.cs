@@ -15,11 +15,11 @@ public class AnimalParts : MonoBehaviour
     void Awake()
     {
         bodyPartNames = new List<string> ();
-        bodyPartNames.Add("Front Legs");
-        bodyPartNames.Add("Back Legs");
-        bodyPartNames.Add("Body");
-        bodyPartNames.Add("Head");
-        bodyPartNames.Add("Tail");
+        bodyPartNames.Add("forelegs");
+        bodyPartNames.Add("backlegs");
+        bodyPartNames.Add("body");
+        bodyPartNames.Add("head");
+        bodyPartNames.Add("tail");
         spriteDict = new Dictionary<string, Sprite>();
         partNames = new Dictionary<string, List<string>>();
         Vector2 originPosition = new Vector2(0, 0);
@@ -40,16 +40,16 @@ public class AnimalParts : MonoBehaviour
             partNames.Add(bodyPartName, partNamesList);
         }
         animalAlignments = new Dictionary<string, string>() {
-            {"Cat", "CU" },
-            {"Dog", "CU" },
-            {"Unicorn", "CU" },
-            {"Dragon", "D"},
-            {"Mantis", "D" },
-            {"Griffin", "D" },
-            {"Swordfish", "D" },
-            {"Crow", "CR" },
-            {"Human", "CR" },
-            {"Octopus", "CR" }
+            {"cat", "CU" },
+            {"dog", "CU" },
+            {"unicorn", "CU" },
+            {"dragon", "D"},
+            {"mantis", "D" },
+            {"griffin", "D" },
+            {"swordfish", "D" },
+            {"crow", "CR" },
+            {"human", "CR" },
+            {"octopus", "CR" }
         };
     }
 
@@ -72,13 +72,13 @@ public class AnimalParts : MonoBehaviour
     }
 
     public string getWeightedRandomName(string baseAnimal, string currentName, string partName) {
-        string currentAnimal = currentName.Split('-')[2];
+        string currentAnimal = currentName.Split('_')[2];
         int randomizedPercentage = Random.Range((int)0, (int)100);
         string chosenAnimal = "";
         int currentTotal = 0;
         for (int i = 0; i < animalWeighting.Count; i++) {
-            string[] animalEntry = animalWeighting[i].Split('-');
-            int weight = int.Parse(animalWeighting[i].Split('-')[1]);
+            string[] animalEntry = animalWeighting[i].Split('_');
+            int weight = int.Parse(animalWeighting[i].Split('_')[1]);
             string animalName = animalEntry[0];
             currentTotal += weight;
             if (currentAnimal != animalName && randomizedPercentage < currentTotal) {
@@ -86,7 +86,7 @@ public class AnimalParts : MonoBehaviour
                 chosenAnimal = animalName;
             }
         }
-        string compositeName = baseAnimal + "-" + partName + "-" + chosenAnimal;
+        string compositeName = baseAnimal + "_" + partName + "_" + chosenAnimal;
         return partNames[partName].Find(animalPartName => animalPartName == compositeName);
     }
 }

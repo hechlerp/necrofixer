@@ -39,13 +39,13 @@ public class CustomerController : MonoBehaviour
         if (petGOs.Count == 0) {
             for (int i = 0; i < petParts.Count; i++) {
                 GameObject instantiatedPart = Instantiate(basePart);
-                Sprite sprite = ap.getSprite(animalBase + "-" + petParts[i]);
+                Sprite sprite = ap.getSprite(animalBase + "_" + petParts[i]);
                 instantiatedPart.GetComponent<SpriteRenderer>().sprite = sprite;
                 instantiatedPart.transform.position = partPositions[i];
                 instantiatedPart.name = sprite.name;
                 BodyPartController bpc = instantiatedPart.GetComponent<BodyPartController>();
                 bpc.baseAnimal = animalBase;
-                bpc.partName = petParts[i].Split('-')[0];
+                bpc.partName = petParts[i].Split('_')[0];
                 petGOs.Add(instantiatedPart);
             }
         } else {
@@ -55,7 +55,7 @@ public class CustomerController : MonoBehaviour
                 BodyPartController bpc = petGO.GetComponent<BodyPartController>();
                 bpc.baseAnimal = animalBase;
                 bpc.updateSprite(sprite);
-                bpc.partName = petParts[i].Split('-')[0];
+                bpc.partName = petParts[i].Split('_')[0];
                 petGO.name = sprite.name;
                 petGO.transform.position = partPositions[i];
                 petGO.SetActive(true);
