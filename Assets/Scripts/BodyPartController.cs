@@ -8,6 +8,7 @@ public class BodyPartController : MonoBehaviour
     Sprite currentSprite;
     public string partName;
     AnimalParts ap;
+    public string baseAnimal;
     void Start()
     {
         currentSprite = GetComponent<SpriteRenderer>().sprite;
@@ -15,7 +16,7 @@ public class BodyPartController : MonoBehaviour
     }
 
     public void onClick() {
-        updateSprite(ap.getRandomSprite(currentSprite.name, partName));
+        updateSprite(ap.getRandomSprite(baseAnimal, currentSprite.name, partName));
     }
 
     public void updateSprite(Sprite sprite) {

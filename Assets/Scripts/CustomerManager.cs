@@ -21,9 +21,15 @@ public class CustomerManager : MonoBehaviour
         
     }
 
+    public GameObject getCurrentCustomer() {
+        return currentCustomer;
+    }
+
     public void progressCustomer() {
         if (currentCustomer != null) {
             currentCustomer.GetComponent<CustomerController>().disablePet();
+            // dialogue
+            GetComponent<Scoring>().scoreRound();
         }
         Destroy(currentCustomer);
         currentCustomerIdx++;

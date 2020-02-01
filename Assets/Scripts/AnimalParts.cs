@@ -7,6 +7,7 @@ public class AnimalParts : MonoBehaviour
     List<string> bodyPartNames;
     Dictionary<string, Sprite> spriteDict;
     Dictionary<string, List<string>> partNames;
+    Dictionary<string, string> animalAlignments;
     Object[] loadedTextures;
     public Vector2 spriteSize;
     public List<string> animalWeighting;
@@ -38,6 +39,22 @@ public class AnimalParts : MonoBehaviour
             }
             partNames.Add(bodyPartName, partNamesList);
         }
+        animalAlignments = new Dictionary<string, string>() {
+            {"Cat", "CU" },
+            {"Dog", "CU" },
+            {"Unicorn", "CU" },
+            {"Dragon", "D"},
+            {"Mantis", "D" },
+            {"Griffin", "D" },
+            {"Swordfish", "D" },
+            {"Crow", "CR" },
+            {"Human", "CR" },
+            {"Octopus", "CR" }
+        };
+    }
+
+    public Dictionary<string, string> getAnimalAlignments() {
+        return animalAlignments;
     }
 
     public Sprite getSprite(string partName) {
@@ -49,13 +66,13 @@ public class AnimalParts : MonoBehaviour
         }
     }
 
-    public Sprite getRandomSprite(string currentName, string partName) {
-        string randomName = getWeightedRandomName(currentName, partName);
+    public Sprite getRandomSprite(string baseAnimal, string currentName, string partName) {
+        string randomName = getWeightedRandomName(baseAnimal, currentName, partName);
         return spriteDict[randomName];
     }
 
-    public string getWeightedRandomName(string currentName, string partName) {
-        string currentAnimal = currentName.Split('-')[0];
+    public string getWeightedRandomName(string baseAnimal, string currentName, string partName) {
+        string currentAnimal = currentName.Split('-')[2];
         int randomizedPercentage = Random.Range((int)0, (int)100);
         string chosenAnimal = "";
         int currentTotal = 0;
@@ -69,6 +86,7 @@ public class AnimalParts : MonoBehaviour
                 chosenAnimal = animalName;
             }
         }
-        return partNames[partName].Find(animalPartName => animalPartName == chosenAnimal + "-" + partName);
+        string compositeName = baseAnimal + "-" + partName + "-" + chosenAnimal;
+        return partNames[partName].Find(animalPartName => animalPartName == compositeName);
     }
 }

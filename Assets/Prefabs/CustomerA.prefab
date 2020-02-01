@@ -45,18 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   petParts:
-  - Dog-Head
-  - Cat-Head
-  - Griffin-Head
-  - Mantis-Head
-  - Octopus-Head
+  - Head-Dog
+  - Head-Cat
+  - Head-Griffin
+  - Head-Mantis
+  - Head-Octopus
   basePart: {fileID: 681782895569693055, guid: 9c257ed1c59e5974d8efbe022c37da48, type: 3}
+  animalBase: Cat
   partPositions:
   - {x: 0, y: 0, z: -1}
   - {x: 2, y: 0, z: -1}
   - {x: 4, y: 0, z: -1}
   - {x: 6, y: 0, z: -1}
   - {x: 8, y: 0, z: -1}
+  alignment: CU
 --- !u!212 &7442696915706234166
 SpriteRenderer:
   m_ObjectHideFlags: 0
