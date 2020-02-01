@@ -18,7 +18,7 @@ public class BodyPartController : MonoBehaviour
         updateSprite(ap.getRandomSprite(currentSprite.name, partName));
     }
 
-    void updateSprite(Sprite sprite) {
+    public void updateSprite(Sprite sprite) {
         currentSprite = sprite;
         GetComponent<SpriteRenderer>().sprite = sprite;
     }

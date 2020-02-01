@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimalParts : MonoBehaviour
 {
     List<string> bodyPartNames;
-    Dictionary<string, Sprite> textureDict;
+    Dictionary<string, Sprite> spriteDict;
     Dictionary<string, List<string>> partNames;
     Object[] loadedTextures;
     public Vector2 spriteSize;
@@ -19,7 +19,7 @@ public class AnimalParts : MonoBehaviour
         bodyPartNames.Add("Body");
         bodyPartNames.Add("Head");
         bodyPartNames.Add("Tail");
-        textureDict = new Dictionary<string, Sprite>();
+        spriteDict = new Dictionary<string, Sprite>();
         partNames = new Dictionary<string, List<string>>();
         Vector2 originPosition = new Vector2(0, 0);
         Vector2 centerAnchor = new Vector2(0.5f, 0.5f);
@@ -29,10 +29,10 @@ public class AnimalParts : MonoBehaviour
             loadedTextures = Resources.LoadAll("BodyParts/" + bodyPartName);
             List<string> partNamesList = new List<string>();
             foreach (Object texture in loadedTextures) {
-                if (!textureDict.TryGetValue(texture.name, out entry)) {
+                if (!spriteDict.TryGetValue(texture.name, out entry)) {
                     Sprite sprite = Sprite.Create(texture as Texture2D, new Rect(originPosition, spriteSize), centerAnchor);
                     sprite.name = texture.name;
-                    textureDict.Add(texture.name, sprite);
+                    spriteDict.Add(texture.name, sprite);
                     partNamesList.Add(texture.name);
                 }
             }
@@ -42,7 +42,7 @@ public class AnimalParts : MonoBehaviour
 
     public Sprite getSprite(string partName) {
         Sprite entry;
-        if (textureDict.TryGetValue(partName, out entry)) {
+        if (spriteDict.TryGetValue(partName, out entry)) {
             return entry;
         } else {
             return null;
@@ -51,7 +51,7 @@ public class AnimalParts : MonoBehaviour
 
     public Sprite getRandomSprite(string currentName, string partName) {
         string randomName = getWeightedRandomName(currentName, partName);
-        return textureDict[randomName];
+        return spriteDict[randomName];
     }
 
     public string getWeightedRandomName(string currentName, string partName) {
