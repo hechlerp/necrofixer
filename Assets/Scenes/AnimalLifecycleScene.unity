@@ -206,7 +206,7 @@ MonoBehaviour:
   customers:
   - {fileID: 7442696915706234167, guid: 5db11f21889ae424a9b4c975a5a75ef9, type: 3}
   - {fileID: 7442696915706234167, guid: 6e0f38407e4001345b6d90d68bd4ba4f, type: 3}
-  customerPos: {x: 0, y: 0}
+  customerPos: {x: -6, y: -2.5}
 --- !u!114 &226074710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230615466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -3.5, z: 0}
+  m_LocalPosition: {x: 6.57, y: -2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -408,8 +408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016119d32af86854e88af96901a790b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1230615470
-BoxCollider2D:
+--- !u!58 &1230615470
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -421,19 +421,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05041337, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.025206566}
   serializedVersion: 2
-  m_Size: {x: 4.515042, y: 4.2125635}
-  m_EdgeRadius: 0
+  m_Radius: 2.2323146
 --- !u!1001 &681782894166911716
 PrefabInstance:
   m_ObjectHideFlags: 0

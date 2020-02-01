@@ -25,19 +25,30 @@ public class CustomerManager : MonoBehaviour
         return currentCustomer;
     }
 
-    public void progressCustomer() {
-        if (currentCustomer != null) {
-            currentCustomer.GetComponent<CustomerController>().disablePet();
-            // dialogue
-            GetComponent<Scoring>().scoreRound();
-        }
+    void endCurrentCustomerCycle() {
+        currentCustomer.GetComponent<CustomerController>().disablePet();
+        GetComponent<Scoring>().scoreRound();
+        // dialogue
         Destroy(currentCustomer);
-        currentCustomerIdx++;
         if (currentCustomerIdx < customers.Count) {
-            currentCustomer = Instantiate(customers[currentCustomerIdx]);
-            currentCustomer.transform.position = customerPos;
+            startCustomerCycle();
         } else {
             GetComponent<GameController>().endGame();
+        }
+    }
+
+    void startCustomerCycle() {
+        currentCustomer = Instantiate(customers[currentCustomerIdx]);
+        currentCustomer.transform.position = customerPos;
+    }
+
+    public void progressCustomer() {
+        currentCustomerIdx++;
+        if (currentCustomer != null) {
+            endCurrentCustomerCycle();
+        } else {
+            startCustomerCycle();
+
         }
     }
 }
