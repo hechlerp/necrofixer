@@ -69,7 +69,6 @@ public class AnimalParts : MonoBehaviour
                 chosenAnimal = animalName;
             }
         }
-        Debug.Log(chosenAnimal);
         return partNames[partName].Find(animalPartName => animalPartName == chosenAnimal + "-" + partName);
     }
 }
