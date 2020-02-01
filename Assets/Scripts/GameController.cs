@@ -22,4 +22,8 @@ public class GameController : MonoBehaviour
         }
         
     }
+
+    public void endGame() {
+        Debug.Log("IT'S OVAH");
+    }
 }
