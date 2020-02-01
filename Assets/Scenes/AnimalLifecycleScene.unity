@@ -206,6 +206,7 @@ MonoBehaviour:
   customers:
   - {fileID: 7442696915706234167, guid: 5db11f21889ae424a9b4c975a5a75ef9, type: 3}
   - {fileID: 7442696915706234167, guid: 6e0f38407e4001345b6d90d68bd4ba4f, type: 3}
+  - {fileID: 7442696915706234167, guid: 1327838282c0c654188691321fce1815, type: 3}
   customerPos: {x: -6, y: -2.5}
 --- !u!114 &226074710
 MonoBehaviour:
