@@ -2,6 +2,7 @@
  * load text in for Dialog
  * 
  * Scott Tongue
+ * 2020
  */
 
 
