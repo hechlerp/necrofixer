@@ -16,9 +16,13 @@ public class BodyPartController : MonoBehaviour
 
     GameObject SwapAnimation;
     private Animator anim;
+    private bool _hasClicked = false;
 
-
-
+    public bool HasClicked
+    {
+        get { return _hasClicked; }
+        set { _hasClicked = value; }
+    }
 
     void Start()
     {
@@ -28,16 +32,17 @@ public class BodyPartController : MonoBehaviour
         ogColor = renderer.color;
 
         //find the music object in scene
-        levelMusic = GameObject.Find("LevelMusic").GetComponent<MusicController>();
-        levelMusic.resetPet();
+     //   levelMusic = GameObject.Find("LevelMusic").GetComponent<MusicController>();
+  //      levelMusic.resetPet();
 
-        SwapAnimation = GameObject.Find ("AttachmentEffects");
-        anim = SwapAnimation.GetComponent<Animator>();
+    //    SwapAnimation = GameObject.Find ("AttachmentEffects");
+  //      anim = SwapAnimation.GetComponent<Animator>();
 
     }
 
     public void onClick()
     {
+        _hasClicked = true;
         renderer.color = ogColor;
         updateSprite(ap.getRandomSprite(baseAnimal, currentSprite.name, partName));
     }
