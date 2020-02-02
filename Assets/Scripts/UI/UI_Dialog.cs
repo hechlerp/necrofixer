@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace ToolUI
 {
-    [RequireComponent(typeof(TimerClock))]
+   
     [RequireComponent(typeof(Text))]
     public class UI_Dialog : MonoBehaviour
     {

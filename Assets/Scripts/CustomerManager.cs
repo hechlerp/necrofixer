@@ -9,10 +9,15 @@ public class CustomerManager : MonoBehaviour
     public GameObject witchAdvisor;
     public GameObject progressButton;
     public Vector2 customerPos;
+    public ToolUI.UI_Dialog dialog;
     int currentCustomerIdx;
     GameObject currentCustomer;
     CustomerTimer ct;
     string currentCustomerName;
+    public string CurrentCustomerName
+    {
+        get { return currentCustomerName; }
+    }
     void Start()
     {
         ct = GameObject.Find("Timer").GetComponent<CustomerTimer>();
@@ -56,6 +61,12 @@ public class CustomerManager : MonoBehaviour
         }
         currentCustomer.GetComponent<CustomerController>().disablePet();
         GetComponent<Scoring>().scoreRound(timedOut);
+        if (timedOut)
+        {
+            string callPrompt = currentCustomerName + "_Timeout";
+            dialog.DialogShow(this.GetComponent<DialogueController>().getDialogueByID(callPrompt));
+        }
+
         // dialogue
         Destroy(currentCustomer);
         showReview();
@@ -65,6 +76,9 @@ public class CustomerManager : MonoBehaviour
         currentCustomer = Instantiate(customers[currentCustomerIdx]);
         currentCustomerName = customers[currentCustomerIdx].name;
         currentCustomer.transform.position = customerPos;
+        string callPrompt = currentCustomerName + "_Prompt";
+        dialog.DialogShow(this.GetComponent<DialogueController>().getDialogueByID(callPrompt));
+
         ct.startTimer(progressCustomer);
     }
 
