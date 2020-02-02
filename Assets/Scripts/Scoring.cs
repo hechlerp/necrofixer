@@ -19,12 +19,15 @@ public class Scoring : MonoBehaviour
         List<GameObject> petParts = cc.getPetGOs();
         Dictionary<string, string> alignments = GetComponent<AnimalParts>().getAnimalAlignments();
         string customerAlignment = cc.alignment;
-        float score = 0;
+        float score = 1;
         foreach (GameObject petPart in petParts) {
-            string animal = petPart.name.Split('_')[2];
-            string animalAlignment = alignments[animal];
-            if (animalAlignment == customerAlignment) {
-                score++;
+            string[] splitName = petPart.name.Split('_');
+            if (splitName[1] != "body") {
+                string animal = splitName[2];
+                string animalAlignment = alignments[animal];
+                if (animalAlignment == customerAlignment) {
+                    score++;
+                }
             }
         }
         // time deductions
