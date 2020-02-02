@@ -6,6 +6,7 @@ public class CustomerManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<GameObject> customers;
+    public GameObject witchAdvisor;
     public Vector2 customerPos;
     int currentCustomerIdx;
     GameObject currentCustomer;
@@ -25,16 +26,24 @@ public class CustomerManager : MonoBehaviour
         return currentCustomer;
     }
 
-    void endCurrentCustomerCycle() {
-        currentCustomer.GetComponent<CustomerController>().disablePet();
-        GetComponent<Scoring>().scoreRound();
-        // dialogue
-        Destroy(currentCustomer);
+    void showReview() {
+        witchAdvisor.SetActive(true);
+    }
+
+    public void finishReview() {
         if (currentCustomerIdx < customers.Count) {
             startCustomerCycle();
         } else {
             GetComponent<GameController>().endGame();
         }
+    }
+
+    void endCurrentCustomerCycle() {
+        currentCustomer.GetComponent<CustomerController>().disablePet();
+        GetComponent<Scoring>().scoreRound();
+        // dialogue
+        Destroy(currentCustomer);
+        showReview();
     }
 
     void startCustomerCycle() {

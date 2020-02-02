@@ -31,6 +31,10 @@ public class Scoring : MonoBehaviour
         roundScores.Add(score);
     }
 
+    public float getRoundScore() {
+        return roundScores[roundScores.Count - 1];
+    }
+
     public float getFinalScore() {
         float sum = 0;
         foreach(float score in roundScores) {
