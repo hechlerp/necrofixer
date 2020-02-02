@@ -28,7 +28,7 @@ public class WitchAdvisorHUD : MonoBehaviour
             reviewScore = roundScore % 2 == 0 ? roundScore - 1 : roundScore;
             dialogueText = dc.getDialogueByName(cm.getCurrentCustomerName() + "_" + reviewScore);
         }
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogueText;
+        transform.GetChild(0).GetComponent<Text>().text = dialogueText;
         transform.parent.GetChild(2).GetComponent<WitchAdvisorStars>().setStars(reviewScore);
     }
 
@@ -39,7 +39,7 @@ public class WitchAdvisorHUD : MonoBehaviour
         reviewScore = finalScore % 2 == 0 ? finalScore - 1 : finalScore;
         dialogueText = dc.getDialogueByName("Final" + "_" + reviewScore);
         // dialogue text
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogueText;
+        transform.GetChild(0).GetComponent<Text>().text = dialogueText;
         // next customer button
         transform.parent.GetChild(1).GetComponent<NextCustomerBtn>().isFinal = true;
         transform.parent.GetChild(2).GetComponent<WitchAdvisorStars>().setStars(reviewScore);
@@ -54,6 +54,6 @@ public class WitchAdvisorHUD : MonoBehaviour
     }
 
     private void OnDisable() {
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+        transform.GetChild(0).GetComponent<Text>().text = "";
     }
 }
