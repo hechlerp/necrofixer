@@ -8,7 +8,7 @@ public class LoaderDialogTest : MonoBehaviour
     void Start()
     {
         Dialog.TextLoader.LoadDialog();
-        FindObjectOfType<ToolUI.UI_Dialog>().DialogShow(2);
+        FindObjectOfType<ToolUI.UI_Dialog>().DialogShow(5);
     }
 
   

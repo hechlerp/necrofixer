@@ -39,6 +39,11 @@ public class TimerClock
         get { return _timeCounter; }
     }
 
+    public float MaxTime
+    {
+        get { return _maxTime; }
+    }
+
     public bool IsTimerEnabled
     {
         get { return _timer.Enabled;  }
