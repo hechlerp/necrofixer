@@ -32,10 +32,7 @@ public static class TimerControllerManager
         {
             _timerDictionary.Add(gameObject, timer);
         }
-        else
-        {
-            timer.Dispose();
-        }
+      
     }
 
     static public void RemoveTimer(GameObject gameObject)

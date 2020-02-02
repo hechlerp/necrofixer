@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace ToolUI
 {
-
+    [RequireComponent(typeof(TimerClock))]
     [RequireComponent(typeof(Text))]
     public class UI_Dialog : MonoBehaviour
     {
@@ -72,7 +72,7 @@ namespace ToolUI
 
             Color color = _dialogbox.color;
             color.a = 0;
-            for (float i = 0; i <= 1f; i=+_fillInRate)
+            for (float i = 0; i <= 1f; i+=_fillInRate)
             {
                 color.a+= _fillInRate;
                 _dialogbox.color = color;
