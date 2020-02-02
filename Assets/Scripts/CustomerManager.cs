@@ -54,7 +54,6 @@ public class CustomerManager : MonoBehaviour
     }
 
     void endCurrentCustomerCycle() {
-        Debug.Log(ct.getTime());
         bool timedOut = ct.getTime() == 0;
         if (ct.getTime() > 0) {
             ct.stopTimer();

@@ -21,12 +21,13 @@ public class Scoring : MonoBehaviour
         string customerAlignment = cc.alignment;
         float score = 1;
         if (timedOut) {
-            Debug.Log("timed out");
             roundScores.Add(0f);
             return;
         }
         foreach (GameObject petPart in petParts) {
-            string[] splitName = petPart.name.Split('_');
+            BodyPartController bpc = petPart.GetComponent<BodyPartController>();
+            string petPartName = bpc.GetComponent<SpriteRenderer>().sprite.name;
+            string[] splitName = petPartName.Split('_');
             if (splitName[1] != "body") {
                 string animal = splitName[2];
                 string animalAlignment = alignments[animal];
