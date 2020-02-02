@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public GameObject witchAdvisor;
     public GameObject dialogueBox;
     public ToolUI.UI_Dialog dialog;
+    public Sprite nightBackground;
     // not to be confused with Waluigi
     WitchAdvisorHUD wah;
     int gameTimer;
@@ -44,6 +45,7 @@ public class GameController : MonoBehaviour
     }
 
     public void endGame() {
+        GameObject.Find("Background").GetComponent<SpriteRenderer>().sprite = nightBackground;
         wah.isFinalScore = true;
         witchAdvisor.SetActive(true);
     }
