@@ -16,7 +16,7 @@ namespace ToolUI
     {
         [SerializeField]
         [Tooltip("Change fill in rate speed")]
-        [Range(0.01f, 0.1f)]
+        [Range(0.02f, 0.3f)]
         private float _fillInRate = 0.2f;
         private Text _dialogbox;
 
