@@ -11,9 +11,11 @@ public class CustomerManager : MonoBehaviour
     public Vector2 customerPos;
     int currentCustomerIdx;
     GameObject currentCustomer;
+    CustomerTimer ct;
     string currentCustomerName;
     void Start()
     {
+        ct = GameObject.Find("Timer").GetComponent<CustomerTimer>();
         currentCustomerIdx = -1;
         currentCustomer = null;
     }
@@ -47,6 +49,9 @@ public class CustomerManager : MonoBehaviour
     }
 
     void endCurrentCustomerCycle() {
+        if (ct.getTime() > -1) {
+            ct.stopTimer();
+        }
         currentCustomer.GetComponent<CustomerController>().disablePet();
         GetComponent<Scoring>().scoreRound();
         // dialogue
@@ -58,6 +63,7 @@ public class CustomerManager : MonoBehaviour
         currentCustomer = Instantiate(customers[currentCustomerIdx]);
         currentCustomerName = customers[currentCustomerIdx].name;
         currentCustomer.transform.position = customerPos;
+        ct.startTimer(progressCustomer);
     }
 
     public void progressCustomer() {

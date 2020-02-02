@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TimerClock))]
 public class TimerTest : MonoBehaviour
 {
     TimerClock timer;
     // Start is called before the first frame update
     void Start()
     {
-      TimerClock Testtimer= new TimerClock(this.gameObject);
-      timer = TimerControllerManager.GetTimer(this.gameObject);
+     // TimerClock Testtimer=  this
+    //  timer = TimerControllerManager.GetTimer(this.gameObject);
         timer.SetupTimer(10f);
     }
 

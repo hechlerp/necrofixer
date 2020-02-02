@@ -6,15 +6,12 @@
  */
 
 using System;
-using System.Timers;
+using System.Collections;
 using UnityEngine;
 
-public class TimerClock 
+public class TimerClock : MonoBehaviour
 {
-    public TimerClock(GameObject gameObject)
-    {
-        TimerControllerManager.AddTimer(gameObject, this);
-    }
+  
 
     public event Action TimerStart = delegate { };
     public event Action TimerPaused = delegate { };
@@ -32,7 +29,8 @@ public class TimerClock
 
     private float _timeCounter = 0f; 
     private float _maxTime;
-    private Timer _timer;
+    private bool _timerRunning = false, _timerCreated =false;
+    private WaitForSecondsRealtime _delay = new WaitForSecondsRealtime(0.1f);
 
     public float TimeCount
     {
@@ -46,21 +44,13 @@ public class TimerClock
 
     public bool IsTimerEnabled
     {
-        get { return _timer.Enabled;  }
+        get { return _timerRunning;  }
     }
+
 
     #region public 
 
-    /// <summary>
-    /// Destory Object
-    /// USE WITH CATION!!!
-    /// </summary>
-    public void Dispose()
-    {
-        TimerRemoved();
-        _timer.Dispose();
-        this.Dispose();
-    }
+  
 
     /// <summary>
     /// Setup timer and start it
@@ -68,17 +58,24 @@ public class TimerClock
     /// <param name="timelimit">Set the amount of time</param>
     public void SetupTimer(float timelimit)
     {
-        if (_timer != null)
+        if (_timerCreated)
             return;
-      
-        _timer = new Timer(100);
-        _timer.Elapsed += TimeCountDownEvent;
 
-        _maxTime = timelimit;
+        _timerCreated = true;
         _timeCounter = timelimit;
+        _maxTime = timelimit;
+        StartCoroutine(TimerCoutdown());
 
-        TimerStart();
-        _timer.Enabled = true;
+    }
+
+    /// <summary>
+    /// Sets new timelimit
+    /// </summary>
+    /// <param name="NewTimeLimit">Sets new timelimit</param>
+    public void ChangeTimeLimit(float NewTimeLimit)
+    {
+        _maxTime = NewTimeLimit;
+
     }
 
     /// <summary>
@@ -95,7 +92,8 @@ public class TimerClock
     /// </summary>
     public void PauseTimer ()
     {
-        _timer.Enabled = false;
+        _timerRunning = false;
+        StopCoroutine(TimerCoutdown());
         TimerPaused();
     }
 
@@ -104,7 +102,8 @@ public class TimerClock
     /// </summary>
     public void ResumeTimer()
     {
-        _timer.Enabled = true;
+        _timerRunning = true;
+        StartCoroutine(TimerCoutdown());
         TimerRemused();
     }
 
@@ -114,7 +113,7 @@ public class TimerClock
     public void RemoveTimer()
     {
         TimerRemoved();
-        Dispose();
+        Destroy(this);
     }
 
     /// <summary>
@@ -139,19 +138,22 @@ public class TimerClock
     #endregion
 
     #region private
-    private  void TimeCountDownEvent(System.Object source, ElapsedEventArgs e)
+
+    IEnumerator TimerCoutdown()
     {
-       if(_timeCounter >= 0f)
+
+        while (true)
         {
             _timeCounter -= 0.1f;
-            if(_timeCounter < 0)
-            {
-                TimerEnded();
-                _timeCounter = 0.0f;
-                _timer.Enabled = false;
-            }
-                
+            if (_timeCounter <= 0f)
+                break;
+            yield return _delay;
         }
+        TimerEnded();
+        _timerRunning = false;
+
+
     }
+    
     #endregion
 }
