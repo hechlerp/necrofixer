@@ -35,6 +35,10 @@ public class DialogueController : MonoBehaviour
     public string getDialogueByName(string dialogueKey) {
         return Dialog.TextLoader.GetDialog(dialogueTracker[dialogueKey]);
     }
+    public int getDialogueByID(string dialogueKey)
+    {
+        return dialogueTracker[dialogueKey];
+    }
 
     // Update is called once per frame
     void Update()

@@ -10,13 +10,13 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace ToolUI
 {
-    [RequireComponent(typeof(TimerClock))]
+   
     [RequireComponent(typeof(Text))]
     public class UI_Dialog : MonoBehaviour
     {
         [SerializeField]
         [Tooltip("Change fill in rate speed")]
-        [Range(0.01f, 0.1f)]
+        [Range(0.02f, 0.3f)]
         private float _fillInRate = 0.2f;
         private Text _dialogbox;
 
