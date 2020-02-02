@@ -21,7 +21,8 @@ public class DialogueController : MonoBehaviour
             { "CustomerC_Prompt", 8 },
             { "CustomerC_5", 9 },
             { "CustomerC_3", 10 },
-            { "CustomerC_1", 11 }
+            { "CustomerC_1", 11 },
+            { "IntroText", 12 }
         };
     }
 
