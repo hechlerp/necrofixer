@@ -9,6 +9,12 @@ public class ButtonNext : MonoBehaviour
     public CustomerManager customerManager;
     private int count = 5;
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            NextPressed();
+    }
     public void NextPressed()
     {
         count -= 2;

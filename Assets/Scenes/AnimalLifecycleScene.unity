@@ -374,8 +374,9 @@ MonoBehaviour:
   - {fileID: 7442696915706234167, guid: 1327838282c0c654188691321fce1815, type: 3}
   witchAdvisor: {fileID: 1862362108}
   progressButton: {fileID: 1230615466}
+  dialogBox: {fileID: 482291876}
   customerPos: {x: -6, y: -2.5}
-  dialog: {fileID: 0}
+  dialog: {fileID: 159290254}
 --- !u!114 &226074710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1957,7 +1958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog: {fileID: 159290254}
-  customerManager: {fileID: 0}
+  customerManager: {fileID: 226074709}
 --- !u!114 &1701927065
 MonoBehaviour:
   m_ObjectHideFlags: 0
