@@ -19,7 +19,6 @@ public class WitchAdvisorHUD : MonoBehaviour
         float roundScore = sc.getRoundScore();
         float reviewScore;
         string dialogueText;
-        Debug.Log(roundScore);
         if (roundScore == 0) {
             reviewScore = 1;
             dialogueText = dc.getDialogueByName(cm.getCurrentCustomerName() + "_" + "Timeout");
