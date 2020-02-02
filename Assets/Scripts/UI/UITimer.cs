@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ToolUI
 {
-    [RequireComponent(typeof(TimerClock))]
+  
     [RequireComponent(typeof(Image))]
     public class UITimer : MonoBehaviour
     {
@@ -19,6 +19,8 @@ namespace ToolUI
         {
             _timeImage = this.GetComponent<Image>();
             _timer = this.GetComponent<TimerClock>();
+            if (_timer == null)
+                _timer = this.gameObject.AddComponent<TimerClock>();
         }
         private void OnDisable()
         {
