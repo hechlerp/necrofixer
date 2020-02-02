@@ -29,7 +29,7 @@ public class WitchAdvisorHUD : MonoBehaviour
             dialogueText = dc.getDialogueByName(cm.getCurrentCustomerName() + "_" + reviewScore);
         }
         transform.GetChild(0).GetComponent<Text>().text = dialogueText;
-        transform.parent.GetChild(2).GetComponent<WitchAdvisorStars>().setStars(reviewScore);
+        transform.parent.GetChild(2).GetComponent<WitchAdvisorStars>().setStars(roundScore);
     }
 
     void showFinalScore() {
@@ -42,7 +42,7 @@ public class WitchAdvisorHUD : MonoBehaviour
         transform.GetChild(0).GetComponent<Text>().text = dialogueText;
         // next customer button
         transform.parent.GetChild(1).GetComponent<NextCustomerBtn>().isFinal = true;
-        transform.parent.GetChild(2).GetComponent<WitchAdvisorStars>().setStars(reviewScore);
+        transform.parent.GetChild(2).GetComponent<WitchAdvisorStars>().setStars(finalScore);
     }
 
     private void OnEnable() {
