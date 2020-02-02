@@ -44,10 +44,8 @@ public class ButtonNext : MonoBehaviour
         int id = customerManager.gameObject.GetComponent<DialogueController>().getDialogueByID(dialog.sourceTextName + count);
         if (id > -1) {
             isNext = true;
-            transform.GetChild(0).gameObject.GetComponent<Text>().text = "Next";
         } else {
             isNext = false;
-            transform.GetChild(0).gameObject.GetComponent<Text>().text = "Done";
         }
     }
 

@@ -28,12 +28,6 @@ public class CustomerManager : MonoBehaviour
         progressButton.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public GameObject getCurrentCustomer() {
         return currentCustomer;
     }
@@ -51,7 +45,6 @@ public class CustomerManager : MonoBehaviour
 
     public void finishReview() {
         if (currentCustomerIdx < customers.Count) {
-            progressButton.SetActive(true);
             startCustomerCycle();
         } else {
             GetComponent<GameController>().endGame();
@@ -65,11 +58,11 @@ public class CustomerManager : MonoBehaviour
         }
         currentCustomer.GetComponent<CustomerController>().disablePet();
         GetComponent<Scoring>().scoreRound(timedOut);
-        if (timedOut)
-        {
-            string callPrompt = currentCustomerName + "_Timeout";
-            dialog.DialogShow(this.GetComponent<DialogueController>().getDialogueByID(callPrompt));
-        }
+        //if (timedOut)
+        //{
+        //    string callPrompt = currentCustomerName + "_Timeout";
+        //    dialog.DialogShow(GetComponent<DialogueController>().getDialogueByID(callPrompt));
+        //}
 
         // dialogue
         Destroy(currentCustomer);
@@ -77,7 +70,6 @@ public class CustomerManager : MonoBehaviour
     }
 
     void startCustomerCycle() {
-        //progressButton.SetActive(true);
         dialogBox.SetActive(true);
         currentCustomer = Instantiate(customers[currentCustomerIdx]);
         currentCustomerName = customers[currentCustomerIdx].name;
@@ -85,7 +77,7 @@ public class CustomerManager : MonoBehaviour
         string callPrompt = currentCustomerName + "_Prompt";
         dialog.sourceTextName = callPrompt;
 
-        dialog.DialogShow(this.GetComponent<DialogueController>().getDialogueByID(callPrompt));
+        dialog.DialogShow(GetComponent<DialogueController>().getDialogueByID(callPrompt));
 
 
     }
@@ -96,7 +88,6 @@ public class CustomerManager : MonoBehaviour
             endCurrentCustomerCycle();
         } else {
             startCustomerCycle();
-
         }
     }
 
