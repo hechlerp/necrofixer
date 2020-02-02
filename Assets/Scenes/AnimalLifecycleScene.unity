@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f64105ef1b55a54f9949a8d502a5a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSize: {x: 32, y: 32}
+  spriteSize: {x: 1024, y: 1024}
   animalWeighting:
   - dragon_13
   - cat_16

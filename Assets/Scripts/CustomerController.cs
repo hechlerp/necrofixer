@@ -45,6 +45,10 @@ public class CustomerController : MonoBehaviour
                 instantiatedPart.transform.position = partPositions[i];
                 instantiatedPart.transform.localScale = partScale[i];
                 instantiatedPart.name = sprite.name;
+                if (sprite.name.Contains("body")) {
+                    Destroy(instantiatedPart.GetComponent<BoxCollider2D>());
+                    Destroy(instantiatedPart.GetComponent<CircleCollider2D>());
+                }
                 BodyPartController bpc = instantiatedPart.GetComponent<BodyPartController>();
                 bpc.baseAnimal = animalBase;
                 bpc.partName = petParts[i].Split('_')[0];
