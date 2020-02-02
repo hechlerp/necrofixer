@@ -8,6 +8,7 @@ public class CustomerController : MonoBehaviour
     public GameObject basePart;
     public string animalBase;
     public List<Vector3> partPositions;
+    public List<Vector3> partScale;
     public string alignment;
     AnimalParts ap;
     List<GameObject> petGOs;
@@ -42,6 +43,7 @@ public class CustomerController : MonoBehaviour
                 Sprite sprite = ap.getSprite(animalBase + "_" + petParts[i]);
                 instantiatedPart.GetComponent<SpriteRenderer>().sprite = sprite;
                 instantiatedPart.transform.position = partPositions[i];
+                instantiatedPart.transform.localScale = partScale[i];
                 instantiatedPart.name = sprite.name;
                 BodyPartController bpc = instantiatedPart.GetComponent<BodyPartController>();
                 bpc.baseAnimal = animalBase;
@@ -58,6 +60,7 @@ public class CustomerController : MonoBehaviour
                 bpc.partName = petParts[i].Split('_')[0];
                 petGO.name = sprite.name;
                 petGO.transform.position = partPositions[i];
+                petGO.transform.localScale = partScale[i];
                 petGO.SetActive(true);
             }
         }
