@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(TimerClock))]
+
 public class SystemMenuController : MonoBehaviour
 {
     [SerializeField]
@@ -16,6 +16,8 @@ public class SystemMenuController : MonoBehaviour
     void Start()
     {
         _timerOutReset = this.GetComponent<TimerClock>();
+        if (_timerOutReset == null)
+            _timerOutReset = this.gameObject.AddComponent<TimerClock>();
         TimerControllerManager.AddTimer(this.gameObject, _timerOutReset);
        
         _timerOutReset.SetupTimer(120f);
@@ -28,7 +30,6 @@ public class SystemMenuController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        Debug.Log(_timerOutReset.TimeCount);
         if ((Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0))
         {
             _timerOutReset.AddTime(0.020f);
