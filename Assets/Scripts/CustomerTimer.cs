@@ -40,8 +40,8 @@ public class CustomerTimer : MonoBehaviour
     }
 
     void timerCallback() {
-        timer = -1;
         callbackFunc();
+        timer = -1;
     }
 
     // Update is called once per frame

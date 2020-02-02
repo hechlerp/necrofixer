@@ -14,15 +14,18 @@ public class DialogueController : MonoBehaviour
             { "CustomerA_5", 1 },
             { "CustomerA_3", 2 },
             { "CustomerA_1", 3 },
+            { "CustomerA_Timeout", 13 },
             { "CustomerB_Prompt", 4 },
             { "CustomerB_5", 5 },
             { "CustomerB_3", 6 },
             { "CustomerB_1", 7 },
+            { "CustomerB_Timeout", 14 },
             { "CustomerC_Prompt", 8 },
             { "CustomerC_5", 9 },
             { "CustomerC_3", 10 },
             { "CustomerC_1", 11 },
-            { "IntroText", 12 }
+            { "CustomerC_Timeout", 15 },
+            { "IntroText", 12 },
         };
     }
 

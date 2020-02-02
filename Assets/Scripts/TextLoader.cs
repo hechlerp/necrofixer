@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 namespace Dialog {
 
@@ -70,11 +71,12 @@ namespace Dialog {
 
             int id = 0;
             string text;
+            char[] splitChar = new char[1] { ',' };
 
             for(int i = 1; textData.Length > i; i++)
             {
                
-                string[] dialog = textData[i].Split(',');
+                string[] dialog = textData[i].Split(splitChar, 2, System.StringSplitOptions.None);
 
                 //skip if there is no id
                 if (!dialog[0].Equals(""))

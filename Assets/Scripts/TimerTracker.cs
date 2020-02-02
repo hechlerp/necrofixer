@@ -8,7 +8,7 @@ public class TimerTracker : MonoBehaviour
     CustomerTimer ct;
     Image timerImg;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ct = GameObject.Find("Timer").GetComponent<CustomerTimer>();
         timerImg = GetComponent<Image>();

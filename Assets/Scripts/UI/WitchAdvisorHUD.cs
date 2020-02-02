@@ -17,8 +17,16 @@ public class WitchAdvisorHUD : MonoBehaviour
 
     private void OnEnable() {
         float roundScore = sc.getRoundScore();
-        float reviewScore = roundScore % 2 == 0 ? roundScore - 1 : roundScore;
-        string dialogueText = dc.getDialogueByName(cm.getCurrentCustomerName() + "_" + reviewScore);
+        float reviewScore;
+        string dialogueText;
+        Debug.Log(roundScore);
+        if (roundScore == 0) {
+            reviewScore = 1;
+            dialogueText = dc.getDialogueByName(cm.getCurrentCustomerName() + "_" + "Timeout");
+        } else {
+            reviewScore = roundScore % 2 == 0 ? roundScore - 1 : roundScore;
+            dialogueText = dc.getDialogueByName(cm.getCurrentCustomerName() + "_" + reviewScore);
+        }
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogueText;
     }
 

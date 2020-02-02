@@ -49,11 +49,13 @@ public class CustomerManager : MonoBehaviour
     }
 
     void endCurrentCustomerCycle() {
-        if (ct.getTime() > -1) {
+        Debug.Log(ct.getTime());
+        bool timedOut = ct.getTime() == 0;
+        if (ct.getTime() > 0) {
             ct.stopTimer();
         }
         currentCustomer.GetComponent<CustomerController>().disablePet();
-        GetComponent<Scoring>().scoreRound();
+        GetComponent<Scoring>().scoreRound(timedOut);
         // dialogue
         Destroy(currentCustomer);
         showReview();
