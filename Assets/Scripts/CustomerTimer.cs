@@ -4,32 +4,57 @@ using UnityEngine;
 
 public class CustomerTimer : MonoBehaviour
 {
-    TimerClock timer;
+    //TimerClock timer;
     // Start is called before the first frame update
+    int timer;
+    int maxTime;
+    System.Action callbackFunc;
     void Start() {
-        TimerClock Testtimer = new TimerClock(gameObject);
-        timer = TimerControllerManager.GetTimer(gameObject);
-        timer.SetupTimer(300f);
-        timer.PauseTimer();
+        timer = -1;
+        maxTime = 3000;
+        //TimerClock Testtimer = new TimerClock(gameObject);
+        //timer = TimerControllerManager.GetTimer(gameObject);
+        //timer.SetupTimer(300f);
+        //timer.PauseTimer();
     }
 
-    public void startTimer() {
-        timer.ResetTimer();
-        timer.ResumeTimer();
+    public void startTimer(System.Action callback) {
+        timer = maxTime;
+        callbackFunc = callback;
+        //timer.ResetTimer();
+        //timer.ResumeTimer();
     }
 
-    void stopTimer() {
-        timer.PauseTimer();
+    public void stopTimer() {
+        //timer.PauseTimer();
         // do something
+        timer = -1;
+    }
+
+    public int getTime() {
+        return timer;
+    }
+
+    public int getMaxTime() {
+        return maxTime;
+    }
+
+    void timerCallback() {
+        timer = -1;
+        callbackFunc();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (timer.IsTimerEnabled && timer.TimeCount > 0) {
-            Debug.Log(timer.TimeCount);
-        } else if (timer.IsTimerEnabled) {
-            stopTimer();
+    void Update() {
+        if (timer > 0) {
+            timer--;
+        } else if (timer == 0) {
+            timerCallback();
         }
+        //if (timer.IsTimerEnabled && timer.TimeCount > 0) {
+        //    Debug.Log(timer.TimeCount);
+        //} else if (timer.IsTimerEnabled) {
+        //    stopTimer();
+        //}
     }
 }

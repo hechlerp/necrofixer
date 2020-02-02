@@ -49,6 +49,9 @@ public class CustomerManager : MonoBehaviour
     }
 
     void endCurrentCustomerCycle() {
+        if (ct.getTime() > -1) {
+            ct.stopTimer();
+        }
         currentCustomer.GetComponent<CustomerController>().disablePet();
         GetComponent<Scoring>().scoreRound();
         // dialogue
@@ -60,7 +63,7 @@ public class CustomerManager : MonoBehaviour
         currentCustomer = Instantiate(customers[currentCustomerIdx]);
         currentCustomerName = customers[currentCustomerIdx].name;
         currentCustomer.transform.position = customerPos;
-        ct.startTimer();
+        ct.startTimer(progressCustomer);
     }
 
     public void progressCustomer() {

@@ -45,20 +45,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   petParts:
-  - head_dog
   - head_cat
-  - head_unicorn
-  - head_mantis
-  - head_octopus
+  - forelegs_cat
+  - backlegs_cat
+  - tail_cat
+  - body_cat
   basePart: {fileID: 681782895569693055, guid: 9c257ed1c59e5974d8efbe022c37da48, type: 3}
   animalBase: cat
   partPositions:
-  - {x: 0, y: 0, z: -1}
-  - {x: 2, y: 0, z: -1}
-  - {x: 4, y: 0, z: -1}
-  - {x: 6, y: 0, z: -1}
-  - {x: 8, y: 0, z: -1}
-  alignment: D
+  - {x: 1.47, y: 1.05, z: -1}
+  - {x: 0.79, y: -1.12, z: -1}
+  - {x: -0.735, y: -0.843, z: -1}
+  - {x: -2.183, y: 0.408, z: -1}
+  - {x: 0, y: 0, z: 0}
+  partScale:
+  - {x: 0.3, y: 0.3, z: 1}
+  - {x: 0.25, y: 0.25, z: 1}
+  - {x: 0.22, y: 0.22, z: 1}
+  - {x: 0.25, y: 0.25, z: 1}
+  - {x: 0.5, y: 0.5, z: 1}
+  alignment: CR
 --- !u!212 &7442696915706234166
 SpriteRenderer:
   m_ObjectHideFlags: 0
