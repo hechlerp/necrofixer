@@ -6,7 +6,7 @@ public class DialogueController : MonoBehaviour
 {
     // Start is called before the first frame update
     Dictionary<string, int> dialogueTracker;
-    void Start()
+    void Awake()
     {
         Dialog.TextLoader.LoadDialog();
         dialogueTracker = new Dictionary<string, int>() {
@@ -37,7 +37,13 @@ public class DialogueController : MonoBehaviour
     }
     public int getDialogueByID(string dialogueKey)
     {
-        return dialogueTracker[dialogueKey];
+        int val;
+        if (dialogueTracker.TryGetValue(dialogueKey, out val)) {
+            return val;
+        } else {
+            return -1;
+        }
+
     }
 
     // Update is called once per frame

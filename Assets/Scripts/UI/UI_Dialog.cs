@@ -10,19 +10,18 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace ToolUI
 {
-   
+
     [RequireComponent(typeof(Text))]
-    public class UI_Dialog : MonoBehaviour
-    {
+    public class UI_Dialog : MonoBehaviour {
         [SerializeField]
         [Tooltip("Change fill in rate speed")]
         [Range(0.02f, 0.3f)]
         private float _fillInRate = 0.2f;
         private Text _dialogbox;
+        public string sourceTextName;
 
         #region Unity Calls
-        private void Awake()
-        {
+        private void Awake() {
             _dialogbox = this.GetComponent<Text>();
             Color color = _dialogbox.color;
             color.a = 0f;
@@ -36,17 +35,15 @@ namespace ToolUI
         /// Toggle visablity of the text
         /// </summary>
         /// <param name="TurnOn">bool value for visablity</param>
-        public void ToggleDialogBox(bool TurnOn)
-        {
+        public void ToggleDialogBox(bool TurnOn) {
             _dialogbox.enabled = TurnOn;
         }
-        
+
 
         /// <summary>
         /// Skip the fade in and show it fully
         /// </summary>
-        public void ShowFullText()
-        {
+        public void ShowFullText() {
             Color color = _dialogbox.color;
             color.a = 255;
             _dialogbox.color = color;

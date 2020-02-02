@@ -77,15 +77,17 @@ public class CustomerManager : MonoBehaviour
     }
 
     void startCustomerCycle() {
-        progressButton.SetActive(true);
+        //progressButton.SetActive(true);
         dialogBox.SetActive(true);
         currentCustomer = Instantiate(customers[currentCustomerIdx]);
         currentCustomerName = customers[currentCustomerIdx].name;
         currentCustomer.transform.position = customerPos;
         string callPrompt = currentCustomerName + "_Prompt";
+        dialog.sourceTextName = callPrompt;
+
         dialog.DialogShow(this.GetComponent<DialogueController>().getDialogueByID(callPrompt));
 
-        ct.startTimer(progressCustomer);
+
     }
 
     public void progressCustomer() {
@@ -96,5 +98,11 @@ public class CustomerManager : MonoBehaviour
             startCustomerCycle();
 
         }
+    }
+
+    public void finishDialogue () {
+        ct.startTimer(progressCustomer);
+        dialogBox.SetActive(false);
+        progressButton.SetActive(true);
     }
 }
