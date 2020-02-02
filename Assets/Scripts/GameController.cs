@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     CustomerManager cm;
     Scoring sc;
     public GameObject witchAdvisor;
+    public GameObject dialogueBox;
+    public ToolUI.UI_Dialog dialog;
     // not to be confused with Waluigi
     WitchAdvisorHUD wah;
     int gameTimer;
@@ -24,11 +26,21 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        gameTimer++;
-        if (gameTimer == 20) {
-            cm.progressCustomer();
+        if (gameTimer < 20) {
+            gameTimer++;
+            if (gameTimer == 20) {
+                startGame();
+            }
         }
         
+    }
+
+    void startGame() {
+        dialogueBox.SetActive(true);
+        dialog.setFinishAction(cm.progressCustomer);
+        dialog.sourceTextName = "IntroText";
+        dialogueBox.transform.GetChild(1).GetComponent<ButtonNext>().determineButtonText();
+        dialog.DialogShow(GetComponent<DialogueController>().getDialogueByID("IntroText"));
     }
 
     public void endGame() {

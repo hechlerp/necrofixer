@@ -61,6 +61,10 @@ namespace ToolUI
             
         }
 
+        public void setFinishAction(System.Action action) {
+            transform.parent.GetChild(1).GetComponent<ButtonNext>().onFinishDialogue = action;
+        }
+
         #endregion
 
         #region Coroutines

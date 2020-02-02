@@ -10,6 +10,7 @@ public class ButtonNext : MonoBehaviour
     public CustomerManager customerManager;
     private int count = 0;
     bool isNext;
+    public System.Action onFinishDialogue;
 
     private void OnEnable() {
         count = 0;
@@ -32,16 +33,17 @@ public class ButtonNext : MonoBehaviour
     public void NextPressed()
     {
         count++;
-        string call = customerManager.CurrentCustomerName + "_" + count.ToString();
-        dialog.DialogShow(customerManager.gameObject.GetComponent<DialogueController>().getDialogueByID(call));
+        string nextPrompt = dialog.sourceTextName + count.ToString();
+        dialog.DialogShow(customerManager.gameObject.GetComponent<DialogueController>().getDialogueByID(nextPrompt));
+        determineButtonText();
     }
     public void DonePressed() {
-        customerManager.finishDialogue();
+        onFinishDialogue();
     }
 
-    void determineButtonText() {
+    public void determineButtonText() {
         int nextItem = count + 1;
-        int id = customerManager.gameObject.GetComponent<DialogueController>().getDialogueByID(dialog.sourceTextName + count);
+        int id = customerManager.gameObject.GetComponent<DialogueController>().getDialogueByID(dialog.sourceTextName + nextItem.ToString());
         if (id > -1) {
             isNext = true;
         } else {

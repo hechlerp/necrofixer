@@ -818,6 +818,16 @@ PrefabInstance:
       propertyPath: witchAdvisor
       value: 
       objectReference: {fileID: 1862362108}
+    - target: {fileID: 4274878863934433158, guid: bd4b27fb6c420e140a286e3ce9b3621c,
+        type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 234059889}
+    - target: {fileID: 4274878863934433158, guid: bd4b27fb6c420e140a286e3ce9b3621c,
+        type: 3}
+      propertyPath: dialog
+      value: 
+      objectReference: {fileID: 499141517}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd4b27fb6c420e140a286e3ce9b3621c, type: 3}
 --- !u!1001 &4459064609325939748

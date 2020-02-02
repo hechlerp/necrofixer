@@ -40,7 +40,6 @@ public class CustomerManager : MonoBehaviour
         dialogBox.SetActive(false);
         witchAdvisor.SetActive(true);
         progressButton.SetActive(false);
-        dialogBox.SetActive(false);
     }
 
     public void finishReview() {
@@ -76,6 +75,7 @@ public class CustomerManager : MonoBehaviour
         currentCustomer.transform.position = customerPos;
         string callPrompt = currentCustomerName + "_Prompt";
         dialog.sourceTextName = callPrompt;
+        dialog.setFinishAction(finishDialogue);
 
         dialog.DialogShow(GetComponent<DialogueController>().getDialogueByID(callPrompt));
 
