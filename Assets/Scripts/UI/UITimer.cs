@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ToolsUI
+namespace ToolUI
 {
     [RequireComponent(typeof(Image))]
     public class UITimer : MonoBehaviour
@@ -12,6 +11,7 @@ namespace ToolsUI
         private GameObject _popTimeOver = null;
         private Image _timeImage;
         private TimerClock _timer = null;
+
         #region Unity callback
 
         private void Awake()
@@ -23,12 +23,23 @@ namespace ToolsUI
             DelegateCleanUp();
         }
 
+        private void Start()
+        {
+            TimerClock Testtimer = new TimerClock(this.gameObject);
+            TimerControllerManager.GetTimer(this.gameObject).SetupTimer(10f);
+            StartTimer(this.gameObject);
+        }
         #endregion
 
         #region public
 
+        /// <summary>
+        /// Setup the timer in the UI based on gameobject
+        /// </summary>
+        /// <param name="gameObject">Gameobject that the timer is set to</param>
         public void StartTimer(GameObject gameObject)
         {
+            DelegateCleanUp();
 
             _timer = TimerControllerManager.GetTimer(gameObject);
             if (_timer == null)
@@ -39,11 +50,12 @@ namespace ToolsUI
             else
             {
                 _timer.TimerEnded += TimeFinished;
+                _timer.TimerRemused += TimeResume;
+                _timer.TimerPaused += TimePause;
                 _timer.TimeRemoved += DelegateCleanUp;
+              
                 _popTimeOver.SetActive(false);
                 StartCoroutine(UpdateImageFill());
-             //   Image fill = new Image;
-            //    Image.f
             }
 
 
@@ -52,13 +64,28 @@ namespace ToolsUI
 
         #region private
 
+        //CLEAN UP OUR MEMORY LEAKS == BAD LITTLE HORSEY CODER
+        //"A Plea for Lean  and CLEAN Software"
         private void DelegateCleanUp()
         {
             if (_timer == null)
                 return;
 
             _timer.TimerEnded -= TimeFinished;
+            _timer.TimerRemused -= TimeResume;
+            _timer.TimerPaused -= TimePause;
             _timer.TimeRemoved -= DelegateCleanUp;
+            
+        }
+
+        private void TimePause()
+        {
+            StopCoroutine(UpdateImageFill());
+        }
+
+        private void TimeResume()
+        {
+            StartCoroutine(UpdateImageFill());
         }
 
         private void TimeFinished()
@@ -68,16 +95,24 @@ namespace ToolsUI
         }
         #endregion
 
+        #region Coroutines
+
         IEnumerator UpdateImageFill()
         {
-            while (_timer.TimeCount > 0f) 
+            while (_timer.TimeCount > 0f)
             {
                 if (_timer.TimeCount <= 0f)
+                {
+                    _timeImage.fillAmount = 0f;
                     yield break;
-                //_timeImage.t
+                }
+
+                _timeImage.fillAmount = _timer.TimeCount / _timer.MaxTime;
                 yield return new WaitForSeconds(.1f);
             }
+            _timeImage.fillAmount = 0f;
         }
+        #endregion
 
     }
 }
