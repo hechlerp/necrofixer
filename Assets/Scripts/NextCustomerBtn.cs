@@ -5,24 +5,23 @@ using UnityEngine;
 public class NextCustomerBtn : MonoBehaviour
 {
     CustomerManager cm;
-    bool hovering;
+    GameController gc;
+    public bool isFinal;
     private void Awake() {
-        cm = GameObject.Find("GlobalScripts").GetComponent<CustomerManager>();
-        hovering = false;
+        isFinal = false;
+        GameObject gs = GameObject.Find("GlobalScripts");
+        cm = gs.GetComponent<CustomerManager>();
+        gc = gs.GetComponent<GameController>();
     }
 
-    private void Update() {
-        if (hovering && Input.GetMouseButtonUp(0)) {
-            transform.parent.gameObject.SetActive(false);
-            cm.finishReview();
+    private void OnMouseOver() {
+        if (Input.GetMouseButtonUp(0)) {
+            if (!isFinal) {
+                transform.parent.gameObject.SetActive(false);
+                cm.finishReview();
+            } else {
+                gc.sendToMenu();
+            }
         }
-    }
-
-    private void OnMouseEnter() {
-        hovering = true;
-    }
-
-    private void OnMouseExit() {
-        hovering = false;
     }
 }

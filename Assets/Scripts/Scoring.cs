@@ -49,6 +49,6 @@ public class Scoring : MonoBehaviour
         foreach(float score in roundScores) {
             sum += score;
         }
-        return sum / roundScores.Count;
+        return Mathf.Floor(sum / roundScores.Count);
     }
 }
