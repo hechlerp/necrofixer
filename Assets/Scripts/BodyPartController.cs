@@ -17,6 +17,8 @@ public class BodyPartController : MonoBehaviour
     GameObject SwapAnimation;
     private Animator anim;
 
+    AudioSource soundEffect;
+
 
 
 
@@ -33,6 +35,7 @@ public class BodyPartController : MonoBehaviour
 
         SwapAnimation = GameObject.Find ("AttachmentEffects");
         anim = SwapAnimation.GetComponent<Animator>();
+        soundEffect = GetComponent<AudioSource>();
 
     }
 
@@ -57,6 +60,7 @@ public class BodyPartController : MonoBehaviour
         levelMusic.PartsCheck();
         anim.StopPlayback();
         anim.Play("Swap", 0,0);
+        soundEffect.Play();        
         
         //anim.play();
 
