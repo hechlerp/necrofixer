@@ -37,6 +37,7 @@ public class CustomerController : MonoBehaviour
     }
 
     void createPet() {
+        // currently, as it's built, every customer has their own controller, so the else will never happen.
         if (petGOs.Count == 0) {
             for (int i = 0; i < petParts.Count; i++) {
                 GameObject instantiatedPart = Instantiate(basePart);

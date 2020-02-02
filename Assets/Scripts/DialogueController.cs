@@ -26,6 +26,9 @@ public class DialogueController : MonoBehaviour
             { "CustomerC_1", 11 },
             { "CustomerC_Timeout", 15 },
             { "IntroText", 12 },
+            { "Final_5", 16 },
+            { "Final_3", 17 },
+            { "Final_1", 18 },
         };
     }
 

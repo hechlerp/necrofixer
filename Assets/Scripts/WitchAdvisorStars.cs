@@ -9,8 +9,10 @@ public class WitchAdvisorStars : MonoBehaviour
         sc = GameObject.Find("GlobalScripts").GetComponent<Scoring>();
     }
 
-    private void OnEnable() {
-        float roundScore = sc.getRoundScore();
+    public void setStars(float score) {
+        Debug.Log("set stars");
+        Debug.Log(score);
+        float roundScore = score;
         if (roundScore < 1) {
             roundScore = 1;
         }

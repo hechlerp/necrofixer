@@ -2,21 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     CustomerManager cm;
     Scoring sc;
+    public GameObject witchAdvisor;
+    // not to be confused with Waluigi
+    WitchAdvisorHUD wah;
     int gameTimer;
-    // Start is called before the first frame update
+
     void Start()
     {
         gameTimer = 0;
         cm = GetComponent<CustomerManager>();
         sc = GetComponent<Scoring>();
+        wah = witchAdvisor.transform.GetChild(3).GetComponent<WitchAdvisorHUD>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         gameTimer++;
@@ -27,7 +32,11 @@ public class GameController : MonoBehaviour
     }
 
     public void endGame() {
-        Debug.Log("IT'S OVAH");
-        Debug.Log("Final score: " + sc.getFinalScore());
+        wah.isFinalScore = true;
+        witchAdvisor.SetActive(true);
+    }
+
+    public void sendToMenu() {
+        SceneManager.LoadScene(0);
     }
 }
