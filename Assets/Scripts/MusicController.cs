@@ -6,6 +6,7 @@ public class MusicController : MonoBehaviour
 {
     FMOD.Studio.EventInstance LevelMusic;
     CustomerManager cm;
+    bool isPlaying;
     
    
    //variables for the specific tracks
@@ -27,14 +28,22 @@ public class MusicController : MonoBehaviour
 
 
     // Start is called before the first frame update
+   
     void Start()
     {
     //finding the global scripts object to get the list of body parts
     cm = GameObject.Find("GlobalScripts").GetComponent<CustomerManager>();
     //creating an instance the the audio we want
+    
+  if(isPlaying == false){
       LevelMusic = FMODUnity.RuntimeManager.CreateInstance ("event:/Music/LevelMusic");
       LevelMusic.start();
+    
+    isPlaying = true;
+      Debug.Log("This is already playing");
+  }
 
+    
     //starting the correct loop at the top of the level
       LevelMusic.setParameterByName ("GameOver", gameOver);
       LevelMusic.setParameterByName ("GameStart",gameStart);
@@ -52,7 +61,7 @@ public class MusicController : MonoBehaviour
         
     }
     
-
+ 
     public void PartsCheck()
     {
      // Debug.Log("Testing the music changes");
@@ -89,6 +98,7 @@ LevelMusic.setParameterByName ("Human",0f);
 LevelMusic.setParameterByName ("Griffin",0f);
 LevelMusic.setParameterByName ("Swordfish",0f);
 LevelMusic.setParameterByName ("Octopus",0f);
+LevelMusic.setParameterByName ("Crow", 0f);
 }
 
 }
