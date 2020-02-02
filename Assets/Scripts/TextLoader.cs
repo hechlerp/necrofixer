@@ -10,24 +10,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Dialog {
-    public class TextLoader : MonoBehaviour
+
+    public static class TextLoader 
     {
         private const string _textPath = "TextData/TextScript";
-        private Dictionary<int, string> _dialogDictionary;
+        private static Dictionary<int, string> _dialogDictionary;
 
 
-        private void Start()
-        {
-            LoadDialog();
-            Debug.Log(GetDialog(2));
-        }
+       
 
         #region public
 
         /// <summary>
         /// Load in dialog text,  
         /// </summary>
-        public void LoadDialog()
+        public  static void LoadDialog()
         {
             if (_dialogDictionary == null)
                 _dialogDictionary = new Dictionary<int, string>();
@@ -42,7 +39,7 @@ namespace Dialog {
         /// </summary>
         /// <param name="ID">ID of dialog </param>
         /// <returns>returns dialog or error message if missing</returns>
-        public string GetDialog(int ID)
+        public static string GetDialog(int ID)
         {
             if(_dialogDictionary == null)
                 Debug.LogError("ERORR: DATA hasn't been loaded");
@@ -66,7 +63,7 @@ namespace Dialog {
         /// <summary>
         /// load in data from cvs file and formats it for our Dictionary
         /// </summary>
-        private void LoadData()
+        private static void LoadData()
         {
             TextAsset ScriptData = Resources.Load<TextAsset>(_textPath);
             string[] textData = ScriptData.text.Split( '\n' );
