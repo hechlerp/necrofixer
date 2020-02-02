@@ -12,12 +12,27 @@ public class BodyPartController : MonoBehaviour
     public string partName;
     AnimalParts ap;
     public string baseAnimal;
+    MusicController levelMusic;
+
+    GameObject SwapAnimation;
+    private Animator anim;
+
+
+
+
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
         currentSprite = renderer.sprite;
         ap = GameObject.Find("GlobalScripts").GetComponent<AnimalParts>();
         ogColor = renderer.color;
+
+        //find the music object in scene
+        levelMusic = GameObject.Find("LevelMusic").GetComponent<MusicController>();
+        levelMusic.resetPet();
+
+        SwapAnimation = GameObject.Find ("AttachmentEffects");
+        anim = SwapAnimation.GetComponent<Animator>();
 
     }
 
@@ -37,6 +52,15 @@ public class BodyPartController : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = sprite;
       
         renderer.color = ogColor;
+
+        //changing music based on update
+        levelMusic.PartsCheck();
+        anim.StopPlayback();
+        anim.Play("Swap", 0,0);
+        
+        //anim.play();
+
+
     }
 
     private void OnMouseEnter()
