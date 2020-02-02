@@ -8,6 +8,7 @@ public class CustomerManager : MonoBehaviour
     public List<GameObject> customers;
     public GameObject witchAdvisor;
     public GameObject progressButton;
+    public GameObject dialogBox;
     public Vector2 customerPos;
     public ToolUI.UI_Dialog dialog;
     int currentCustomerIdx;
@@ -23,12 +24,8 @@ public class CustomerManager : MonoBehaviour
         ct = GameObject.Find("Timer").GetComponent<CustomerTimer>();
         currentCustomerIdx = -1;
         currentCustomer = null;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        dialogBox.SetActive(false);
+        progressButton.SetActive(false);
     }
 
     public GameObject getCurrentCustomer() {
@@ -40,13 +37,14 @@ public class CustomerManager : MonoBehaviour
     }
 
     void showReview() {
+        dialogBox.SetActive(false);
         witchAdvisor.SetActive(true);
         progressButton.SetActive(false);
+        dialogBox.SetActive(false);
     }
 
     public void finishReview() {
         if (currentCustomerIdx < customers.Count) {
-            progressButton.SetActive(true);
             startCustomerCycle();
         } else {
             GetComponent<GameController>().endGame();
@@ -60,11 +58,11 @@ public class CustomerManager : MonoBehaviour
         }
         currentCustomer.GetComponent<CustomerController>().disablePet();
         GetComponent<Scoring>().scoreRound(timedOut);
-        if (timedOut)
-        {
-            string callPrompt = currentCustomerName + "_Timeout";
-            dialog.DialogShow(this.GetComponent<DialogueController>().getDialogueByID(callPrompt));
-        }
+        //if (timedOut)
+        //{
+        //    string callPrompt = currentCustomerName + "_Timeout";
+        //    dialog.DialogShow(GetComponent<DialogueController>().getDialogueByID(callPrompt));
+        //}
 
         // dialogue
         Destroy(currentCustomer);
@@ -72,13 +70,16 @@ public class CustomerManager : MonoBehaviour
     }
 
     void startCustomerCycle() {
+        dialogBox.SetActive(true);
         currentCustomer = Instantiate(customers[currentCustomerIdx]);
         currentCustomerName = customers[currentCustomerIdx].name;
         currentCustomer.transform.position = customerPos;
         string callPrompt = currentCustomerName + "_Prompt";
-        dialog.DialogShow(this.GetComponent<DialogueController>().getDialogueByID(callPrompt));
+        dialog.sourceTextName = callPrompt;
 
-        ct.startTimer(progressCustomer);
+        dialog.DialogShow(GetComponent<DialogueController>().getDialogueByID(callPrompt));
+
+
     }
 
     public void progressCustomer() {
@@ -87,7 +88,12 @@ public class CustomerManager : MonoBehaviour
             endCurrentCustomerCycle();
         } else {
             startCustomerCycle();
-
         }
+    }
+
+    public void finishDialogue () {
+        ct.startTimer(progressCustomer);
+        dialogBox.SetActive(false);
+        progressButton.SetActive(true);
     }
 }

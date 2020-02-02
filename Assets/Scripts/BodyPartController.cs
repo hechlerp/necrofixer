@@ -8,7 +8,7 @@ public class BodyPartController : MonoBehaviour
     Sprite currentSprite;
     SpriteRenderer renderer;
     Color ogColor;
-    bool flash = false;
+  
     public string partName;
     AnimalParts ap;
     public string baseAnimal;
@@ -38,7 +38,7 @@ public class BodyPartController : MonoBehaviour
 
     public void onClick()
     {
-        StopCoroutine(Flash());
+        renderer.color = ogColor;
         updateSprite(ap.getRandomSprite(baseAnimal, currentSprite.name, partName));
     }
 
@@ -50,7 +50,7 @@ public class BodyPartController : MonoBehaviour
     {
         currentSprite = sprite;
         GetComponent<SpriteRenderer>().sprite = sprite;
-        flash = false;
+      
         renderer.color = ogColor;
 
         //changing music based on update
@@ -65,29 +65,16 @@ public class BodyPartController : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        flash = true;
-        StartCoroutine(Flash());
+
+        renderer.color = Color.yellow;
 
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("stop");
-        flash = false;
+        
+        
         renderer.color = ogColor;
     }
 
-    IEnumerator Flash()
-    {
-
-        while (flash)
-        {
-            Debug.Log("yellow");
-            renderer.color = Color.yellow;
-            yield return new WaitForSeconds(0.1f);
-            renderer.color = ogColor;
-            yield return new WaitForSeconds(0.1f);
-            Debug.Log("normal");
-        }
-    }
 }

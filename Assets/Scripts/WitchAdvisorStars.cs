@@ -10,8 +10,6 @@ public class WitchAdvisorStars : MonoBehaviour
     }
 
     public void setStars(float score) {
-        Debug.Log("set stars");
-        Debug.Log(score);
         float roundScore = score;
         if (roundScore < 1) {
             roundScore = 1;
