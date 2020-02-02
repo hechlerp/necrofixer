@@ -64,7 +64,7 @@ MonoBehaviour:
   - {x: 0.22, y: 0.22, z: 1}
   - {x: 0.25, y: 0.25, z: 1}
   - {x: 0.5, y: 0.5, z: 1}
-  alignment: CU
+  alignment: CON
 --- !u!212 &7442696915706234166
 SpriteRenderer:
   m_ObjectHideFlags: 0

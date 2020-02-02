@@ -88,8 +88,10 @@ MonoBehaviour:
   - {fileID: 7442696915706234167, guid: 5db11f21889ae424a9b4c975a5a75ef9, type: 3}
   - {fileID: 7442696915706234167, guid: 6e0f38407e4001345b6d90d68bd4ba4f, type: 3}
   - {fileID: 7442696915706234167, guid: 1327838282c0c654188691321fce1815, type: 3}
+  - {fileID: 7442696915706234167, guid: 755d3479bfb670b46a6aff230b2de706, type: 3}
   witchAdvisor: {fileID: 0}
   progressButton: {fileID: 0}
+  dialogBox: {fileID: 0}
   customerPos: {x: -6, y: -2.5}
   dialog: {fileID: 0}
 --- !u!114 &4274878863934433158
@@ -105,6 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   witchAdvisor: {fileID: 0}
+  dialogueBox: {fileID: 0}
+  dialog: {fileID: 0}
 --- !u!114 &4274878863934433159
 MonoBehaviour:
   m_ObjectHideFlags: 0
