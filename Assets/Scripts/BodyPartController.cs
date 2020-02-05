@@ -19,7 +19,12 @@ public class BodyPartController : MonoBehaviour
 
     AudioSource soundEffect;
 
+    private bool _hasClicked = false;
 
+    public bool HasClicked{
+        get {return _hasClicked;}
+        set {_hasClicked = value;}
+    }
 
 
     void Start()
@@ -42,6 +47,7 @@ public class BodyPartController : MonoBehaviour
     public void onClick()
     {
         renderer.color = ogColor;
+        _hasClicked = true;
         updateSprite(ap.getRandomSprite(baseAnimal, currentSprite.name, partName));
     }
 
