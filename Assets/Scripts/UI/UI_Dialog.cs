@@ -19,10 +19,12 @@ namespace ToolUI
         private float _fillInRate = 0.2f;
         private Text _dialogbox;
         public string sourceTextName;
+        string textToShow;
 
         #region Unity Calls
         private void Awake() {
-            _dialogbox = this.GetComponent<Text>();
+            textToShow = "";
+            _dialogbox = GetComponent<Text>();
             Color color = _dialogbox.color;
             color.a = 0f;
             _dialogbox.color = color;
@@ -56,7 +58,8 @@ namespace ToolUI
         /// <param name="ID">ID of text dialog to show</param>
         public void DialogShow(int ID)
         {
-            _dialogbox.text= Dialog.TextLoader.GetDialog(ID);
+            textToShow = Dialog.TextLoader.GetDialog(ID);
+            _dialogbox.text = textToShow;
             StartCoroutine(FadeTextIn());
             
         }
@@ -70,11 +73,14 @@ namespace ToolUI
         #region Coroutines
         IEnumerator FadeTextIn()
         {
-
+            string coroutineText = textToShow;
             Color color = _dialogbox.color;
             color.a = 0;
             for (float i = 0; i <= 1f; i+=_fillInRate)
             {
+                if (coroutineText != textToShow) {
+                    i = 1f;
+                }
                 color.a+= _fillInRate;
                 _dialogbox.color = color;
                 yield return new WaitForSeconds(0.1f);

@@ -36,9 +36,14 @@ public class GameController : MonoBehaviour
         
     }
 
+    void endOpeningDialogue() {
+        GameObject.Find("WizardMaster").SetActive(false);
+        cm.progressCustomer();
+    }
+
     void startGame() {
         dialogueBox.SetActive(true);
-        dialog.setFinishAction(cm.progressCustomer);
+        dialog.setFinishAction(endOpeningDialogue);
         dialog.sourceTextName = "IntroText";
         dialogueBox.transform.GetChild(1).GetComponent<ButtonNext>().determineButtonText();
         dialog.DialogShow(GetComponent<DialogueController>().getDialogueByID("IntroText"));

@@ -7,9 +7,11 @@ public class ClickUtil : MonoBehaviour
     Ray ray;
     RaycastHit2D hit;
     float maxRaycastDist;
+    CustomerManager cm;
     // Start is called before the first frame update
     void Start()
     {
+        cm = GameObject.Find("GlobalScripts").GetComponent<CustomerManager>();
         maxRaycastDist = 50f;
     }
 
@@ -22,7 +24,7 @@ public class ClickUtil : MonoBehaviour
             int lm = 1 << 8;
 
             hit = Physics2D.Raycast(point, Vector2.zero, maxRaycastDist, lm);
-            if (hit.collider != null) {
+            if (hit.collider != null && !cm.isPrompting) {
                 hit.collider.gameObject.GetComponent<BodyPartController>().onClick();
             }
         }

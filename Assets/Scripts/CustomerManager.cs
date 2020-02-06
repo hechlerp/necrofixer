@@ -11,6 +11,7 @@ public class CustomerManager : MonoBehaviour
     public GameObject dialogBox;
     public Vector2 customerPos;
     public ToolUI.UI_Dialog dialog;
+    public bool isPrompting;
     int currentCustomerIdx;
     GameObject currentCustomer;
     CustomerTimer ct;
@@ -21,6 +22,7 @@ public class CustomerManager : MonoBehaviour
     }
     void Start()
     {
+        isPrompting = false;
         ct = GameObject.Find("Timer").GetComponent<CustomerTimer>();
         currentCustomerIdx = -1;
         currentCustomer = null;
@@ -76,7 +78,7 @@ public class CustomerManager : MonoBehaviour
         string callPrompt = currentCustomerName + "_Prompt";
         dialog.sourceTextName = callPrompt;
         dialog.setFinishAction(finishDialogue);
-
+        isPrompting = true;
         dialog.DialogShow(GetComponent<DialogueController>().getDialogueByID(callPrompt));
 
 
@@ -92,6 +94,7 @@ public class CustomerManager : MonoBehaviour
     }
 
     public void finishDialogue () {
+        isPrompting = false;
         ct.startTimer(progressCustomer);
         dialogBox.SetActive(false);
         progressButton.SetActive(true);
