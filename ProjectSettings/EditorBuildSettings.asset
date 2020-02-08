@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/GameScreen.unity
-    guid: 469e2fa0794754b4287e1c94f70b43cb
+    path: Assets/Scenes/AnimalLifecycleScene.unity
+    guid: 10d8b5bf9f312d64ea4430f9206ce14b
   m_configObjects: {}
